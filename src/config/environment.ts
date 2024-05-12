@@ -1,7 +1,7 @@
 import 'dotenv/config'
 
 const CONFIG = {
-  db: process.env.DB
+  db: process.env.DBnew
 }
 
 export default CONFIG

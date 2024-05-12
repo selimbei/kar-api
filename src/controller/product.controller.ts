@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { logger } from '../utils/logger'
 import { createProductValidation } from '../validations/product.validation'
+import { getProductFromDB } from '../services/product.service'
 
 export const createProduct = (req: Request, res: Response) => {
   const { error, value } = createProductValidation(req.body)
@@ -18,42 +19,40 @@ export const createProduct = (req: Request, res: Response) => {
   })
 }
 
-export const getProduct = (req: Request, res: Response) => {
-  const products = [
-    { name: 'sepatu', price: 200000 },
-    { name: 'kaos', price: 100000 },
-    { name: 'celana', price: 150000 }
-  ]
+export const getProduct = async () => {
+  // await createProductToDB()
+  await getProductFromDB()
+  // const product: any = await getProductFromDB()
 
-  const {
-    params: { name }
-  } = req
+  // const {
+  //   params: { name }
+  // } = req
 
-  if (name) {
-    const filteredProduct = products.filter((product) => {
-      return product.name === name
-    })
+  // if (name) {
+  //   const filteredProduct = product.filter((product: any) => {
+  //     return product.name === name
+  //   })
 
-    if (filteredProduct.length === 0) {
-      return res.status(404).send({
-        status: false,
-        statuscode: 404,
-        data: {}
-      })
-    }
+  //   if (filteredProduct.length === 0) {
+  //     return res.status(404).send({
+  //       status: false,
+  //       statuscode: 404,
+  //       data: {}
+  //     })
+  //   }
 
-    logger.info('Success get product')
-    return res.status(200).send({
-      status: true,
-      statuscode: 200,
-      data: filteredProduct[0]
-    })
-  }
+  //   logger.info('Success get product')
+  //   return res.status(200).send({
+  //     status: true,
+  //     statuscode: 200,
+  //     data: filteredProduct[0]
+  //   })
+  // }
 
-  logger.info('Success get product')
-  return res.status(200).send({
-    status: true,
-    statuscode: 200,
-    data: products
-  })
+  // logger.info('Success get product')
+  // return res.status(200).send({
+  //   status: true,
+  //   statuscode: 200,
+  //   data: product
+  // })
 }
