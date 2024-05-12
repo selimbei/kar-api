@@ -3,6 +3,7 @@ import { routes } from './routes/index.route'
 import { logger } from './utils/logger'
 import bodyParser from 'body-parser'
 import cors from 'cors'
+import deserializeToken from './middleware/deserializeToken'
 
 // connect to database
 import './utils/connectDB'
@@ -22,6 +23,8 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', '*')
   next()
 })
+
+app.use(deserializeToken)
 
 routes(app)
 

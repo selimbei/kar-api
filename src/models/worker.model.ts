@@ -5,6 +5,12 @@ const workerSchema = new Schema(
   {
     name: {
       type: String
+    },
+    isWork: {
+      type: Boolean
+    },
+    salary: {
+      type: Number
     }
   },
   { timestamps: true }

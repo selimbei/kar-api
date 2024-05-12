@@ -5,6 +5,8 @@ export interface ProductType {
 
 export interface WorkerType {
   name: string
+  isWork: boolean
+  salary: number
 }
 
 export interface UserType {
