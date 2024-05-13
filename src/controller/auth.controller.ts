@@ -41,8 +41,8 @@ export const createSession = async (req: Request, res: Response) => {
       return res.status(401).send({ status: false, statusCode: 401, message: 'Invalid username or password', data: {} })
     }
     logger.info('logging in ...')
-    const accessToken = signJWT({ ...user }, { expiresIn: '5s' })
-    const refreshToken = signJWT({ ...user }, { expiresIn: '1d' })
+    const accessToken = signJWT({ ...user }, { expiresIn: '1d' })
+    const refreshToken = signJWT({ ...user }, { expiresIn: '1y' })
     return res
       .status(200)
       .send({ status: true, statusCode: 200, message: 'Login user success', data: { accessToken, refreshToken } })
