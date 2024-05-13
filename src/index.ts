@@ -1,4 +1,4 @@
-import express, { Application } from 'express'
+import express, { Application, Request, Response } from 'express'
 import { routes } from './routes/index.route'
 import { logger } from './utils/logger'
 import bodyParser from 'body-parser'
@@ -25,6 +25,10 @@ app.use((req, res, next) => {
 })
 
 app.use(deserializeToken)
+
+app.get('/', (req: Request, res: Response) => {
+  res.send('Wellcome to my Learn Karyana API project 🚀')
+})
 
 routes(app)
 
