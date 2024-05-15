@@ -45,7 +45,7 @@ export const createSession = async (req: Request, res: Response) => {
     const refreshToken = signJWT({ ...user }, { expiresIn: '1y' })
     return res
       .status(200)
-      .send({ status: true, statusCode: 200, message: 'Login user success', data: { accessToken, refreshToken } })
+      .send({ status: true, statusCode: 200, message: 'Login user success', data: { accessToken, refreshToken, user } })
   } catch (error: any) {
     logger.error('Error login user2', error.message)
     return res.status(422).send({ status: false, statusCode: 422, message: error.message, data: {} })
